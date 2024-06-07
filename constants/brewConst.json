@@ -1,0 +1,24 @@
+{
+    "datasetParams" : 
+    {
+        "recipeName" : "multiple-operations-recipe-test-postman-input8",
+        "projectName" : "multiple-operations-project-test-postman-input8",
+        "datasetName" : "multiple-operations-resolution-dataset-postman-input8", 
+        "datasetFormat" : 
+        {
+            "csv" : "CSV",
+            "json" : "JSON"
+        },
+        "commaDelimiter" : ",",
+        "datasetContainsHeaderRow" : true,
+        "datasetS3BucketName" : "sftp-s3-home", 
+        "datasetS3InputKey" : "resolution.csv"
+    },
+    "jobParams" : 
+    {
+        "jobName" : "multiple-columns-job-postman-input8", 
+        "s3OutputBucketName" : "sftp-s3-home",
+        "s3OutputPath" : "brew-output/multiple-operations-job/",
+        "outputFileFormat" : "CSV"
+    }
+}
