@@ -1,0 +1,20 @@
+{
+    "RDS_HOST": "database-2.civ74iupife5.us-east-1.rds.amazonaws.com",
+    "RDS_USER" : "admin",
+    "RDS_PASSWORD" : "dataxform",
+    "RDS_DATABASE": "database2",
+    "RDS_DATABASE_DESTINATION": "database3",
+    "accessKeyId": "AKIAT664MWQ4MTDNENM7",
+    "secretAccessKey": "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",
+    "region": "us-east-1",
+    "CatalogID": "272655758392", 
+    "DatabaseName": "glue_database",
+    "TableName": "new",
+    "Role": "arn:aws:iam::272655758392:role/glue",
+    "SALESFORCE_USERNAME"  : "sairam.marupalla@dataxform.ai",
+    "SALESFORCE_PASSWORD" : "7668Sairam@",
+    "SALESFORCE_TOKEN" : "p8jm9998WRnf366HNGTYshrAE",
+    "SALESFORCE_LOGIN_URL" : "https://dataxform.my.salesforce.com"
+    
+}
+

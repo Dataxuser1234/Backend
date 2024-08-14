@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const express = require('express');
-const app = express();
+//const express = require('express');
+//const app = express();
 const { login } = require('../login/queries.js');
 
 const secretKey = 'hDJwwy7Is1wO44qneiRjgTHbxA8Ie4mR75BvHJJ8qn8=';

@@ -57,7 +57,7 @@ exports.authenticateJWT = (req, res, next) => {
 
 
 console.log("Hello World")
-
+console.log('File Handler ',awsCredentials)
 
 exports.uploadFile = async (req, res) => {
     const file = req.file;
@@ -82,22 +82,23 @@ exports.uploadFile = async (req, res) => {
 
     try {
         await s3Client.send(new PutObjectCommand(uploadParams));
-        await glueClient.send(new StartCrawlerCommand({ Name: crawlerName }));
+        //await glueClient.send(new StartCrawlerCommand({ Name: crawlerName }));
 
 
-        let isCrawlerRunning = true;
+      /*  let isCrawlerRunning = true;
         while (isCrawlerRunning) {
             await new Promise(resolve => setTimeout(resolve, 60000)); // Wait for 60 seconds
             const { Crawler } = await glueClient.send(new GetCrawlerCommand({ Name: crawlerName }));
             isCrawlerRunning = Crawler.State === 'RUNNING';
         }
-
+        */
         //await s3Client.send(new CopyObjectCommand({ Bucket: uploadParams.Bucket, CopySource: `${uploadParams.Bucket}/New/${file.originalname}`, Key: `Crawled/${file.originalname}` }));
         //await s3Client.send(new DeleteObjectCommand({ Bucket: uploadParams.Bucket, Key: uploadParams.Key }));
 
         //res.send('File uploaded, Glue Crawler started, and file moved after crawling completed.');
         const message='File uploaded into the S3, Glue Crawler started, and file moved to another location after crawler completes its Job.'
-        res.status(200).send(generateSuccessResponse(message));
+        const message2='File uploaded into the S3'
+        res.status(200).send(generateSuccessResponse(message2));
     } catch (err) {
         console.error('Error:', err);
         res.status(500).send({ error: err.message });
