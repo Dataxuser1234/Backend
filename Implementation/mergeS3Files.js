@@ -34,10 +34,9 @@ app.post('/merge-files', async (req, res) => {
 
         let mergedData = '';
         let currentFileSize = 0;
-        const maxFileSize = 150 * 1024 * 1024; // 150 MB 
+        const maxFileSize = 120 * 1024 * 1024; // 135 MB 
         let currentFileNumber = 1;
         let header = '';
-        
         
         for (let file of files) {
             const readParams = {
@@ -51,16 +50,18 @@ app.post('/merge-files', async (req, res) => {
                 header = records[0]; 
             }
 
-            for (let i = 1; i < records.length; i++) { // Start from 1 to skip the header
+            if (mergedData === '') {
+                mergedData = header + '\n'; // Initialize mergedData with the header for the first file or a new file
+            }
+
+            for (let i = 1; i < records.length; i++) { // Start from 1 to skip the header in each source file
                 let record = records[i] + '\n';
                 if (currentFileSize + Buffer.byteLength(record, 'utf-8') > maxFileSize) {
-                    
                     await writeToFile(targetBucket, targetPrefix, outputFile, mergedData, currentFileNumber);
                     currentFileNumber++;
                     mergedData = header + '\n' + record; // Start a new file with the header
                     currentFileSize = Buffer.byteLength(mergedData, 'utf-8');
                 } else {
-                    
                     mergedData += record;
                     currentFileSize += Buffer.byteLength(record, 'utf-8');
                 }
@@ -114,6 +115,7 @@ async function ensureFolderExists(bucket, prefix) {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
 
 
 
